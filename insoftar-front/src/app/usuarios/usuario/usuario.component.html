@@ -1,4 +1,9 @@
-<form #form="ngForm" (submit)="onGuardar(form)" (reset)="onReset(form)">
+<form
+  #form="ngForm"
+  autocomplete="off"
+  (submit)="onGuardar(form)"
+  (reset)="onReset(form)"
+>
   <input
     type="hidden"
     name="id"
@@ -98,7 +103,3 @@
     </button>
   </div>
 </form>
-
-<div *ngIf="errorMessage" class="alert alert-warning">
-  <strong>Warning!</strong> {{ errorMessage }}
-</div>
