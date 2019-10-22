@@ -1,0 +1,104 @@
+<form #form="ngForm" (submit)="onGuardar(form)" (reset)="onReset(form)">
+  <input
+    type="hidden"
+    name="id"
+    #Id="ngModel"
+    [(ngModel)]="service.formData.id"
+    class="form-control"
+  />
+  <div class="form-group">
+    <label>Nombres*</label>
+    <input
+      name="nombres"
+      maxlength="25"
+      #Nombres="ngModel"
+      [(ngModel)]="service.formData.nombres"
+      class="form-control"
+      required
+    />
+    <div class="text-danger" *ngIf="Nombres.invalid && Nombres.touched">
+      Campo obligatorio
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Apellidos*</label>
+    <input
+      name="apellidos"
+      maxlength="25"
+      #Apellidos="ngModel"
+      [(ngModel)]="service.formData.apellidos"
+      class="form-control"
+      required
+    />
+    <div class="text-danger" *ngIf="Apellidos.invalid && Apellidos.touched">
+      Campo obligatorio
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <label>Cedula*</label>
+      <input
+        type="tel"
+        name="cedula"
+        minlength="6"
+        pattern="[0-9]+"
+        #Cedula="ngModel"
+        [(ngModel)]="service.formData.cedula"
+        class="form-control"
+        required
+      />
+      <div class="text-danger" *ngIf="Cedula.invalid && Cedula.touched">
+        Campo obligatorio (Solo números)
+      </div>
+    </div>
+    <div class="col">
+      <label>Telefono</label>
+      <input
+        type="tel"
+        name="telefono"
+        minlength="6"
+        pattern="[0-9]+"
+        #Telefono="ngModel"
+        [(ngModel)]="service.formData.telefono"
+        class="form-control"
+      />
+      <div class="text-danger" *ngIf="Telefono.invalid && Telefono.touched">
+        Solo números
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group mt-3">
+    <label>Email*</label>
+    <input
+      type="email"
+      name="correo"
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+      #Correo="ngModel"
+      [(ngModel)]="service.formData.correo"
+      class="form-control"
+      required
+    />
+    <div class="text-danger" *ngIf="Correo.invalid && Correo.touched">
+      Campo obligatorio
+    </div>
+  </div>
+  <div class="form-group">
+    <button
+      type="submit"
+      [disabled]="form.invalid"
+      class="btn btn-lg btn-info btn-block"
+    >
+      Guardar
+    </button>
+  </div>
+  <div class="form-group">
+    <button type="reset" class="btn btn-lg btn-danger btn-block">
+      Cancelar
+    </button>
+  </div>
+</form>
+
+<div *ngIf="errorMessage" class="alert alert-warning">
+  <strong>Warning!</strong> {{ errorMessage }}
+</div>

@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <form #form="ngForm" class="form-inline">
+    <div class="form-group mx-sm-2 mb-2">
+      <label for="inputPassword2" class="sr-only">Correo</label>
+      <input
+        type="email"
+        [ngModel]="correo"
+        class="form-control"
+        name="correo"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+      />
+    </div>
+    <div class="form-group">
+      <button
+        (click)="getUsuarioCorreo(form)"
+        type="button"
+        class="btn btn-primary mb-2 sm-2"
+      >
+        Buscar correo
+      </button>
+    </div>
+    <div class="form-group">
+      <button
+        (click)="llenarTabla()"
+        type="button"
+        class="btn btn-secundary mb-2 ml-3 sm-2"
+      >
+        Limpiar
+      </button>
+    </div>
+  </form>
+</div>
+
+<table class="table table-hover">
+  <tr>
+    <th>Nombres</th>
+    <th>Apellidos</th>
+    <th>Cedula</th>
+    <th>Telefono</th>
+    <th>Correo</th>
+  </tr>
+  <tr *ngFor="let u of service.list">
+    <td>{{ u.nombres }}</td>
+    <td>{{ u.apellidos }}</td>
+    <td>{{ u.cedula }}</td>
+    <td>{{ u.telefono }}</td>
+    <td>{{ u.correo }}</td>
+    <td (click)="llenarForm(u)">
+      <button class="btn btn-sm btn-outline-info">Editar</button>
+    </td>
+  </tr>
+</table>
